@@ -231,7 +231,10 @@ app.get('/recipes', async (req, res) => {
 				if (timePreset === '30-60' && !(total > 30 && total <= 60)) continue;
 				if (timePreset === '>60' && !(total > 60)) continue;
 			}
-			if (String(favoritesOnly) === '1' && favoriteIds.size > 0 && !favoriteIds.has(raw.id)) continue;
+			if (String(favoritesOnly) === '1') {
+				if (favoriteIds.size === 0) continue; // show 0 when no favorites
+				if (!favoriteIds.has(raw.id)) continue;
+			}
 			filtered.push({ raw, name, prep, cook, difficulty: recLite.difficulty });
 		}
 
