@@ -25,19 +25,6 @@ app.get('/api/recipes', async (req, res) => {
   }
 });
 
-app.get('/api/recipes/:id', async (req, res) => {
-  try {
-    const data = await getData();
-    const recipe = data.recipes.find(r => r.id === req.params.id);
-    if (!recipe) {
-      return res.status(404).json({ error: 'Recipe not found' });
-    }
-    res.json(recipe);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch recipe' });
-  }
-});
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

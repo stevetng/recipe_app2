@@ -248,6 +248,125 @@
       ],
       "tags": ["vegan", "healthy", "lunch"],
       "dateAdded": "2024-03-20T11:30:00Z"
+    },
+    {
+      "id": "11",
+      "title": "Shrimp Scampi",
+      "description": "Garlicky shrimp pasta dish",
+      "servings": 4,
+      "prepTime": "15 minutes",
+      "cookTime": "15 minutes",
+      "difficulty": "medium",
+      "ingredients": [
+        {"ingredientId": "shrimp", "amount": "1", "unit": "lb"},
+        {"ingredientId": "spaghetti", "amount": "1", "unit": "lb"},
+        {"ingredientId": "olive_oil", "amount": "3", "unit": "tbsp"},
+        {"ingredientId": "parmesan", "amount": "0.5", "unit": "cup"}
+      ],
+      "instructions": [
+        "Cook pasta according to package",
+        "Sauté shrimp in garlic and oil",
+        "Combine with pasta",
+        "Top with parmesan"
+      ],
+      "tags": ["seafood", "pasta", "italian"],
+      "dateAdded": "2024-03-25T13:00:00Z"
+    },
+    {
+      "id": "12",
+      "title": "Stir-Fried Tofu",
+      "description": "Vegetarian Asian stir-fry",
+      "servings": 4,
+      "prepTime": "20 minutes",
+      "cookTime": "15 minutes",
+      "difficulty": "medium",
+      "ingredients": [
+        {"ingredientId": "tofu", "amount": "14", "unit": "oz"},
+        {"ingredientId": "bell_pepper", "amount": "2", "unit": "medium"},
+        {"ingredientId": "soy_sauce", "amount": "3", "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Press and cube tofu",
+        "Stir-fry vegetables",
+        "Add tofu and sauce",
+        "Serve hot"
+      ],
+      "tags": ["vegetarian", "asian", "healthy"],
+      "dateAdded": "2024-03-26T14:15:00Z"
+    },
+    {
+      "id": "13",
+      "title": "Grilled Salmon with Asparagus",
+      "description": "Healthy grilled salmon with roasted asparagus",
+      "servings": 4,
+      "prepTime": "15 minutes",
+      "cookTime": "20 minutes",
+      "difficulty": "medium",
+      "ingredients": [
+        {"ingredientId": "salmon_fillet", "amount": "1.5", "unit": "lb"},
+        {"ingredientId": "asparagus", "amount": "1", "unit": "bunch"},
+        {"ingredientId": "lemon", "amount": "1", "unit": "whole"},
+        {"ingredientId": "garlic", "amount": "3", "unit": "cloves"},
+        {"ingredientId": "olive_oil", "amount": "2", "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Preheat grill to medium-high",
+        "Season salmon with garlic, lemon, and oil",
+        "Trim asparagus and toss with oil",
+        "Grill salmon 4-5 minutes per side",
+        "Grill asparagus until tender"
+      ],
+      "tags": ["seafood", "healthy", "dinner"],
+      "dateAdded": "2024-03-27T18:30:00Z"
+    },
+    {
+      "id": "14",
+      "title": "Almond-Crusted Chicken",
+      "description": "Crispy almond-crusted chicken cutlets",
+      "servings": 4,
+      "prepTime": "25 minutes",
+      "cookTime": "20 minutes",
+      "difficulty": "medium",
+      "ingredients": [
+        {"ingredientId": "chicken_breast", "amount": "1.5", "unit": "lb"},
+        {"ingredientId": "almonds", "amount": "1", "unit": "cup"},
+        {"ingredientId": "eggs", "amount": "2", "unit": "large"},
+        {"ingredientId": "olive_oil", "amount": "3", "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Grind almonds into fine crumbs",
+        "Dip chicken in egg then almond coating",
+        "Heat oil in large skillet",
+        "Cook chicken 6-7 minutes per side",
+        "Let rest before serving"
+      ],
+      "tags": ["dinner", "gluten-free", "high-protein"],
+      "dateAdded": "2024-03-28T19:45:00Z"
+    },
+    {
+      "id": "15",
+      "title": "Lemon Garlic Pasta",
+      "description": "Light and fresh lemon garlic pasta",
+      "servings": 4,
+      "prepTime": "10 minutes",
+      "cookTime": "15 minutes",
+      "difficulty": "easy",
+      "ingredients": [
+        {"ingredientId": "spaghetti", "amount": "1", "unit": "lb"},
+        {"ingredientId": "garlic", "amount": "6", "unit": "cloves"},
+        {"ingredientId": "lemon", "amount": "2", "unit": "whole"},
+        {"ingredientId": "olive_oil", "amount": "1/3", "unit": "cup"},
+        {"ingredientId": "parmesan", "amount": "1/2", "unit": "cup"}
+      ],
+      "instructions": [
+        "Cook pasta al dente",
+        "Sauté garlic in olive oil",
+        "Add lemon juice and zest",
+        "Toss with pasta",
+        "Top with parmesan"
+      ],
+      "tags": ["vegetarian", "pasta", "italian"],
+      "dateAdded": "2024-03-29T20:15:00Z"
     }
   ],
   "ingredients": [
@@ -570,6 +689,78 @@
       "category": "condiment",
       "nutrition": {"calories": 89, "protein": 3, "carbs": 3, "fat": 8},
       "commonAllergens": ["sesame"],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "shrimp",
+      "name": "Raw Shrimp",
+      "category": "seafood",
+      "nutrition": {"calories": 85, "protein": 20, "carbs": 0, "fat": 1},
+      "commonAllergens": ["shellfish"],
+      "dietary": ["keto", "high-protein"]
+    },
+    {
+      "id": "bell_pepper",
+      "name": "Bell Pepper",
+      "category": "vegetable",
+      "nutrition": {"calories": 30, "protein": 1, "carbs": 7, "fat": 0},
+      "commonAllergens": [],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "peanut_butter",
+      "name": "Peanut Butter",
+      "category": "spread",
+      "nutrition": {"calories": 190, "protein": 7, "carbs": 7, "fat": 16},
+      "commonAllergens": ["peanuts"],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "tofu",
+      "name": "Firm Tofu",
+      "category": "protein",
+      "nutrition": {"calories": 70, "protein": 8, "carbs": 2, "fat": 4},
+      "commonAllergens": ["soy"],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "salmon_fillet",
+      "name": "Fresh Salmon Fillet",
+      "category": "protein",
+      "nutrition": {"calories": 208, "protein": 22, "carbs": 0, "fat": 13},
+      "commonAllergens": ["fish"],
+      "dietary": ["keto", "high-protein"]
+    },
+    {
+      "id": "asparagus",
+      "name": "Fresh Asparagus",
+      "category": "vegetable",
+      "nutrition": {"calories": 20, "protein": 2.2, "carbs": 3.9, "fat": 0.2},
+      "commonAllergens": [],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "almonds",
+      "name": "Raw Almonds",
+      "category": "nuts",
+      "nutrition": {"calories": 164, "protein": 6, "carbs": 6, "fat": 14},
+      "commonAllergens": ["tree nuts"],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "lemon",
+      "name": "Fresh Lemon",
+      "category": "fruit",
+      "nutrition": {"calories": 17, "protein": 0.6, "carbs": 5.4, "fat": 0.2},
+      "commonAllergens": [],
+      "dietary": ["vegan", "gluten-free"]
+    },
+    {
+      "id": "garlic",
+      "name": "Fresh Garlic",
+      "category": "vegetable",
+      "nutrition": {"calories": 4, "protein": 0.2, "carbs": 1, "fat": 0},
+      "commonAllergens": [],
       "dietary": ["vegan", "gluten-free"]
     }
   ]
