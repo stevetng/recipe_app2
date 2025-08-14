@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Track ongoing changes here.
 
+## [0.4.0] - Shopping list selection and generation
+- Frontend: Added `SelectionProvider` to manage selected recipe IDs (persisted to localStorage) and selection mode.
+- Frontend: Added `ShoppingControls` (Grocery list toggle + Generate) positioned below the sort bar; shows hint when no items selected.
+- Frontend: Selectable recipe grid in select mode with green hover and persistent green border for selected cards; click toggles selection.
+- Frontend: `RecipesClient` wires Generate to POST `/ai/shopping-list` with selected IDs and shows aggregated items in a dialog (loading/error states included).
+- Frontend: Added minimal `ui/dialog` for the popup.
+
 ## [0.3.1] - Favorites (localStorage) and instant filtering
 - Frontend: Added `FavoritesProvider` to persist recipe IDs in `localStorage` and expose `isFavorite`, `toggleFavorite`, `favoritesCsv`.
 - Frontend: Added `FavoriteButton` on each `RecipeCard` header.
