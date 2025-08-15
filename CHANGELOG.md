@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Track ongoing changes here.
 
+## [0.4.1] - UI polish: home cleanup and recipe detail restyle
+- Frontend: Removed the "Design System Visual Test" section from the Home page.
+- Frontend: Restyled `/recipes/[id]` page to the new slate gradient design with badge color mapping, meta info row, gradient cards for Ingredients/Instructions, and improved Nutrition section.
+
 ## [0.4.0] - Shopping list selection and generation
 - Frontend: Added `SelectionProvider` to manage selected recipe IDs (persisted to localStorage) and selection mode.
 - Frontend: Added `ShoppingControls` (Grocery list toggle + Generate) positioned below the sort bar; shows hint when no items selected.

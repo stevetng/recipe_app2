@@ -72,7 +72,7 @@ The application uses a JSON file (`data.json`) as a mock database
    - Any assumptions made
    - Known limitations or bugs
    - Additional features you'd add with more time
- 
+  
 
 2. Send us (via email to scott.nguyen@sprx.tax & anthony.difalco@sprx.tax):
    - A zip file of the entire project (frontend and backend)
@@ -80,3 +80,55 @@ The application uses a JSON file (`data.json`) as a mock database
 
 
 Good luck! We're excited to see your implementation.
+
+
+## Candidate Notes
+
+### Setup additions
+- Frontend env: create `frontend/.env.local` with
+  - `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080`
+- Optional backend env (for LLM normalization in shopping list): create `backend/.env` with
+  - `OPENAI_API_KEY=...`
+- Start services
+  - Backend: `cd backend && npm install && npm run dev`
+  - Frontend: `cd frontend && npm install && npm run dev`
+
+### Implementation choices
+- Frontend: Next.js App Router + TypeScript, Tailwind CSS, shadcn-style primitives (`button`, `badge`, `card`), dark slate UI.
+- Backend: Express reading `backend/db/data.json`; computes nutrition totals and handles filtering/sorting by query.
+- State & UX
+  - Favorites: `FavoritesProvider` stores IDs in `localStorage`; `FavoriteButton` on cards; sort bar toggle filters to favorites.
+  - Shopping list: `SelectionProvider` manages selected recipe IDs; “Grocery list / Generate” controls; POST `/ai/shopping-list` aggregates ingredients. If `OPENAI_API_KEY` is present, backend attempts LLM normalization; otherwise returns deterministic aggregation with optional `notes`.
+- Data fetching: `/recipes` fetches server-side using URL params; page is dynamic to reflect changes immediately.
+
+### Completed features
+- Recipes list with search (name), filters (tags, ingredients), difficulty/time presets, and sorting (name/prep/cook/difficulty).
+- Recipe detail page with ingredients, instructions, tags, and computed nutrition totals.
+- Favorites with local persistence and instant filtering.
+- Shopping list flow: select recipes, generate aggregated grocery list in a dialog.
+- Consistent dark UI with gradient cards; sticky headers and clear navigation.
+
+### Assumptions
+- Ingredient matching in backend filter accepts IDs; name fallback is case-insensitive.
+- Favorites and selection persist in `localStorage` between sessions.
+- Dataset size is small enough for current server-side filtering without pagination.
+
+### Known limitations
+- No pagination/infinite scroll on `/recipes`.
+- Filters list is derived from currently loaded items (not precomputed across entire dataset).
+- Shopping list dialog is minimal (no grouping/export yet).
+- Unit normalization is basic; LLM step is optional and may be skipped without an API key.
+
+### Questions
+- what if there's 100+ recipes? 
+- what if i need to include user auth for users to see their own preferences?
+- what if i wanted to create a new recipe? 
+- what if i wanted a suggestions thing? 
+- ie. if i like these recipes, these are recipes id also like? 
+
+### With more time
+- Add pagination and server caching.
+- Client caching (SWR/React Query) for instant back/forward UX.
+- Export/print shopping list; group by categories; quantity/unit normalization.
+- Dedicated favorites view and persisted grocery lists.
+- Accessibility polish and broader test coverage.
