@@ -1,4 +1,4 @@
-import { fetchRecipe } from "@/lib/api";
+import { fetchRecipe as fetchRecipeServer } from "@/lib/server-api";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +6,7 @@ import { ArrowLeft, Home, Clock, Users, ChefHat } from "lucide-react";
 
 export default async function RecipeDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const recipe = await fetchRecipe(id);
+  const recipe = await fetchRecipeServer(id);
   const totalTime = (recipe.prepTimeMinutes || 0) + (recipe.cookTimeMinutes || 0);
 
   const difficultyClass = (d: string | undefined) => {
