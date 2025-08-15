@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Track ongoing changes here.
 
+## [0.5.0] - Serverless API for Vercel-only deployment
+- Frontend: Moved backend logic into Next.js Route Handlers under `app/api`:
+  - `GET /api/recipes` (filter/sort/paginate)
+  - `GET /api/recipes/[id]`
+  - `POST /api/ai/shopping-list` (aggregation + optional LLM)
+- Frontend: Ported helpers to `lib/recipes-server.ts` and copied dataset to `data/data.json`.
+- Frontend: Updated `lib/api.ts` to call relative `/api/...` routes (no external backend URL required).
+- Build verified for Vercel deployment with optional `OPENAI_API_KEY` env.
+
 ## [0.4.1] - UI polish: home cleanup and recipe detail restyle
 - Frontend: Removed the "Design System Visual Test" section from the Home page.
 - Frontend: Restyled `/recipes/[id]` page to the new slate gradient design with badge color mapping, meta info row, gradient cards for Ingredients/Instructions, and improved Nutrition section.
