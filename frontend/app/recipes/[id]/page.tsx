@@ -1,4 +1,4 @@
-import { fetchRecipe as fetchRecipeServer } from "@/lib/server-api";
+import { getRecipeNormalized } from "@/lib/recipes-server";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,7 +6,19 @@ import { ArrowLeft, Home, Clock, Users, ChefHat } from "lucide-react";
 
 export default async function RecipeDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const recipe = await fetchRecipeServer(id);
+  const recipe = getRecipeNormalized(id);
+  if (!recipe) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-bold">Recipe not found</h1>
+          <Button asChild className="bg-orange-600 hover:bg-orange-700">
+            <Link href="/recipes">Back to recipes</Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
   const totalTime = (recipe.prepTimeMinutes || 0) + (recipe.cookTimeMinutes || 0);
 
   const difficultyClass = (d: string | undefined) => {
