@@ -13,9 +13,11 @@ async function getServerHeaders(): Promise<HeadersInit | undefined> {
   const h = await headers();
   const cookie = h.get("cookie") || undefined;
   const bypass = h.get("x-vercel-protection-bypass") || undefined;
+  const authorization = h.get("authorization") || undefined;
   const out: Record<string, string> = {};
   if (cookie) out["cookie"] = cookie;
   if (bypass) out["x-vercel-protection-bypass"] = bypass as string;
+  if (authorization) out["authorization"] = authorization as string;
   return Object.keys(out).length ? out : undefined;
 }
 
