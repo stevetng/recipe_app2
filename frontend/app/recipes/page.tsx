@@ -1,4 +1,4 @@
-import { fetchRecipes as fetchRecipesServer } from "@/lib/server-api";
+import { listRecipes } from "@/lib/recipes-server";
 import { Filters } from "@/components/Filters";
 import Link from "next/link";
 import { SelectionProvider } from "@/components/SelectionProvider";
@@ -9,7 +9,7 @@ export const revalidate = 0;
 
 export default async function RecipesPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const params = new URLSearchParams(Object.entries(await (searchParams || Promise.resolve({}))).flatMap(([k, v]) => v === undefined ? [] : Array.isArray(v) ? v.map(x => [k, x]) : [[k, v]]));
-  const data = await fetchRecipesServer(params);
+  const data = listRecipes(params);
 
   // Build available filters from current dataset (lightweight approach for MVP)
   const availableTags = Array.from(new Set(data.items.flatMap((r) => r.tags || []))).sort((a, b) => a.localeCompare(b));
