@@ -96,10 +96,11 @@ Good luck! We're excited to see your implementation.
 - Frontend: Next.js App Router + TypeScript, Tailwind CSS, shadcn-style primitives (`button`, `badge`, `card`), dark slate UI.
 - Serverless API (Vercel): Next.js Route Handlers under `frontend/app/api` using `frontend/data/data.json`.
   - `GET /api/recipes` filter/sort/paginate; `GET /api/recipes/[id]`; `POST /api/ai/shopping-list` (aggregate + optional LLM).
+- SSR data access (no HTTP): `/recipes` and `/recipes/[id]` read data in-process via `lib/recipes-server` to avoid preview protection 401s; API routes remain for client calls.
 - State & UX
   - Favorites: `FavoritesProvider` stores IDs in `localStorage`; `FavoriteButton` on cards; sort bar toggle filters to favorites.
   - Shopping list: `SelectionProvider` manages selected recipe IDs; “Grocery list / Generate” controls; Generate calls `/api/ai/shopping-list` and displays items.
-- Data fetching: `/recipes` fetches server-side and calls relative `/api/...` routes; dynamic to reflect URL changes immediately.
+- Data fetching: `/recipes` page is dynamic to reflect URL changes immediately.
 
 ### Completed features
 - Recipes list with search (name), filters (tags, ingredients), difficulty/time presets, and sorting (name/prep/cook/difficulty).
@@ -110,26 +111,22 @@ Good luck! We're excited to see your implementation.
 - Consistent dark UI with gradient cards; sticky headers and clear navigation.
 
 ### Assumptions
-- Ingredient matching for filters accepts IDs; name fallback is case-insensitive.
-- Favorites and selection persist in `localStorage` between sessions.
-- Dataset size is small; serverless JSON read is sufficient for MVP.
+- JSON is not large. 
+- We don't care about auth or creating new recipes. 
+- User doesn't care about data persistence.
+- User knows about the grocery list feature. 
+- User will search by name and not semantically. 
 
 ### Known limitations
-- No pagination/infinite scroll on `/recipes`.
-- Filters list computed from current dataset in memory.
-- Shopping list dialog is minimal (no grouping/export yet).
-- Unit normalization is basic; LLM step is optional.
+- Currently loads all recipes then filters it in JS, long term use a real DB, caching, etc.
+- Also every search scans the entire DB instead of more efficient search
+- Client side local storage for the favorites/selections. 
+- No auth for different users. 
+- No way to create/add new recipes. Long term set up new APIs
+- 
 
 ### With more time
-- Add pagination and caching on the API routes.
-- Client caching (SWR/React Query) for instant back/forward UX.
-- Export/print shopping list; group by categories; quantity/unit normalization.
-- Dedicated favorites view and persisted grocery lists.
-- Accessibility polish and broader test coverage.
-
-### Questions
-- what if there's 100+ recipes? 
-- what if i need to include user auth for users to see their own preferences?
-- what if i wanted to create a new recipe? 
-- what if i wanted a suggestions thing? 
-- ie. if i like these recipes, these are recipes id also like? 
+- Add a real database. 
+- User auth.
+- Add new recipes.
+- Suggestions based off of liked recipes. 

@@ -195,10 +195,3 @@ LLM Shopping List UX
 7) Polish & resilience
 - Empty/error/loading states; pagination or infinite scroll; accessibility pass.
 - Basic tests for utilities and components.
-
-## Success Criteria
-- Home page with a working "Let's go" CTA into `/recipes`.
-- Smooth recipe browsing with accurate filtering/sorting.
-- Clear detail view with computed nutrition.
-- Favorites persist across sessions.
-- Shopping list generated for selected recipes; works without LLM key and improves with it. 

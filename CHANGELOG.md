@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 - Track ongoing changes here.
 
+## [0.5.1] - Serverless polish: no-HTTP SSR for Vercel previews
+- Frontend (SSR): `/recipes` and `/recipes/[id]` now read data in-process via `lib/recipes-server` (no HTTP fetch), avoiding Vercel preview protection 401s.
+- Frontend (client): API routes remain for browser interactions (`/api/recipes`, `/api/recipes/[id]`, `/api/ai/shopping-list`).
+- Types: tightened normalized recipe and `NutritionTotal` typing to match `Recipe`.
+- Docs: updated README Candidate Notes to reflect the no-HTTP SSR setup.
+
 ## [0.5.0] - Serverless API for Vercel-only deployment
 - Frontend: Moved backend logic into Next.js Route Handlers under `app/api`:
   - `GET /api/recipes` (filter/sort/paginate)
@@ -62,4 +68,46 @@ All notable changes to this project will be documented in this file.
 - Frontend: Installed Tailwind and configured (`tailwind.config.ts`, `postcss.config.js`, Tailwind directives in `app/globals.css`).
 - Frontend: Added shadcn-style `Button` component and `lib/utils` helper.
 - Frontend: Converted `app/layout` and `app/page` to `.tsx`.
-- Frontend: Implemented Home page with "Let's go" CTA and a visual Button variants grid for design system verification. 
+- Frontend: Implemented Home page with "Let's go" CTA and a visual Button variants grid for design system verification.
+
+## Overall Architecture
+
+### Frontend Structure (`/frontend/`)
+
+#### Core App Routes (`app/`)
+- **`/`** (`page.tsx`): Home page with "Let's go" button
+- **`/recipes`** (`recipes/page.tsx`): Recipe list with filters, sorting, favorites, selection
+- **`/recipes/[id]`** (`recipes/[id]/page.tsx`): Individual recipe detail view
+
+#### API Routes (`app/api/`)
+- **`GET /api/recipes`** (`api/recipes/route.ts`): Filter/sort/paginate recipes
+- **`GET /api/recipes/[id]`** (`api/recipes/[id]/route.ts`): Get single recipe
+- **`POST /api/ai/shopping-list`** (`api/ai/shopping-list/route.ts`): Generate shopping lists with AI
+
+#### Data Layer (`lib/`)
+- **`api.ts`**: Client-side API helpers for browser interactions
+- **`recipes-server.ts`**: Server-side data access (direct JSON reading, no HTTP)
+- **`server-api.ts`**: Server-side API helpers for SSR
+- **`utils.ts`**: Utility functions
+
+#### State Management (`components/`)
+- **`FavoritesProvider.tsx`**: Manages favorite recipe IDs (localStorage)
+- **`SelectionProvider.tsx`**: Manages selected recipes for shopping lists (localStorage)
+
+#### UI Components (`components/`)
+- **`RecipesClient.tsx`**: Main recipe grid with selection/favorites
+- **`RecipeCard.tsx`**: Individual recipe cards
+- **`Filters.tsx`**: Search, tags, ingredients, difficulty, time filters
+- **`SortMenu.tsx`**: Sorting controls
+- **`ShoppingControls.tsx`**: Shopping list generation controls
+- **`FavoriteButton.tsx`**: Heart icon for favoriting
+- **`ui/`**: shadcn/ui components (button, card, dialog, badge)
+
+#### Data & Types
+- **`data/data.json`**: Recipe dataset (copied from backend)
+- **`types/recipe.ts`**: TypeScript interfaces
+
+### Backend Structure (`/backend/`) - Legacy
+- **`src/server.js`**: Express server with same API endpoints
+- **`db/data.json`**: Original recipe dataset
+- Uses OpenAI for shopping list normalization
